@@ -1,0 +1,106 @@
+<div class="menu-container">
+  <!-- Header -->
+  <header class="header">
+    <h1>🍽️ Notre Menu</h1>
+    <button class="cart-btn" (click)="toggleCart()">
+      🛒 Panier ({{ cartItemCount$ | async }})
+    </button>
+  </header>
+
+  <!-- Search Bar -->
+  <div class="search-section">
+    <input 
+      type="text" 
+      class="search-input" 
+      placeholder="Rechercher un plat..."
+      [value]="searchTerm"
+      (input)="onSearchChange($event.target.value)"
+    />
+  </div>
+
+  <!-- Category Filter -->
+  <div class="category-filter">
+    <button 
+      *ngFor="let category of categories$ | async"
+      [class.active]="(selectedCategory$ | async) === category"
+      (click)="filterByCategory(category)"
+      class="category-btn"
+    >
+      {{ category }}
+    </button>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid">
+    <div *ngFor="let product of products$ | async" class="product-card">
+      <div class="product-image-container">
+        <img [src]="product.image" [alt]="product.name" class="product-image" />
+        <span class="stock-badge" [class.low-stock]="product.stock < 10">
+          Stock: {{ product.stock }}
+        </span>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-category">{{ product.category }}</p>
+        <div class="product-footer">
+          <span class="product-price">${{ product.price.toFixed(2) }}</span>
+          <button 
+            class="add-btn" 
+            (click)="addToCart(product)"
+            [disabled]="product.stock === 0"
+          >
+            {{ product.stock > 0 ? 'Ajouter' : 'Rupture' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" [class.show]="showCart">
+    <div class="cart-header">
+      <h2>Panier</h2>
+      <button class="close-btn" (click)="toggleCart()">✕</button>
+    </div>
+
+    <ng-container *ngIf="cart$ | async as cartList">
+      <div class="cart-items" *ngIf="cartList.length > 0; else emptyCart">
+        <div *ngFor="let item of cartList" class="cart-item">
+        <img [src]="item.image" [alt]="item.name" class="cart-item-image" />
+        <div class="cart-item-info">
+          <h4>{{ item.name }}</h4>
+          <p>${{ item.price.toFixed(2) }}</p>
+        </div>
+        <div class="cart-item-controls">
+          <button (click)="removeFromCart(item.id)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="addToCart(item)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <p class="empty-cart">Votre panier est vide</p>
+    </ng-template>
+
+      <div class="cart-footer" *ngIf="cartList.length > 0">
+        <div class="cart-total">
+          <strong>Total:</strong>
+          <strong>
+            <ng-container *ngIf="cartTotal$ | async as total">
+              ${{ total.toFixed(2) }}
+            </ng-container>
+          </strong>
+        </div>
+        <ng-container *ngIf="cartTotal$ | async as total">
+          <button class="checkout-btn" (click)="checkout(total)">
+            Commander
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="overlay" [class.show]="showCart" (click)="toggleCart()"></div>
+</div>
+<!-- File cleared as requested -->
