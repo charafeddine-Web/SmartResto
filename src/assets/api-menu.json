@@ -1,0 +1,164 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pizza Margherita",
+      "price": 8.5,
+      "stock": 20,
+      "category": "Fast Food",
+      "image": "https://www.foodandwine.com/thmb/iJw7N_NfcPpd-EB8rpYbzrkSFIM=/1500x0/filters:no_upscale():strip_icc()/tomato-mozzarella-pizza.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cheeseburger",
+      "price": 6.0,
+      "stock": 18,
+      "category": "Fast Food",
+      "image": "https://www.simplyrecipes.com/thmb/classic-cheeseburger.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Chicken Tacos",
+      "price": 5.5,
+      "stock": 25,
+      "category": "Mexican",
+      "image": "https://www.foodandwine.com/thmb/chicken-tacos.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Beef Shawarma",
+      "price": 7.0,
+      "stock": 14,
+      "category": "Middle Eastern",
+      "image": "https://www.seriouseats.com/thmb/beef-shawarma.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Chicken Salad",
+      "price": 5.0,
+      "stock": 12,
+      "category": "Healthy",
+      "image": "https://www.eatingwell.com/thmb/chicken-salad.jpg"
+    },
+    {
+      "id": 6,
+      "name": "French Fries",
+      "price": 2.5,
+      "stock": 40,
+      "category": "Fast Food",
+      "image": "https://www.simplyrecipes.com/thmb/french-fries.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Hot Dog",
+      "price": 4.0,
+      "stock": 22,
+      "category": "Fast Food",
+      "image": "https://www.foodandwine.com/thmb/hot-dog.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Chicken Nuggets",
+      "price": 4.5,
+      "stock": 30,
+      "category": "Fast Food",
+      "image": "https://www.seriouseats.com/thmb/chicken-nuggets.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Spaghetti Bolognese",
+      "price": 9.0,
+      "stock": 10,
+      "category": "Italian",
+      "image": "https://www.simplyrecipes.com/thmb/spaghetti-bolognese.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Lasagna",
+      "price": 9.5,
+      "stock": 8,
+      "category": "Italian",
+      "image": "https://www.foodandwine.com/thmb/lasagna.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Grilled Chicken",
+      "price": 8.0,
+      "stock": 16,
+      "category": "Grill",
+      "image": "https://www.eatingwell.com/thmb/grilled-chicken.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Beef Steak",
+      "price": 12.0,
+      "stock": 6,
+      "category": "Grill",
+      "image": "https://www.seriouseats.com/thmb/beef-steak.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Fish and Chips",
+      "price": 7.5,
+      "stock": 14,
+      "category": "Seafood",
+      "image": "https://www.simplyrecipes.com/thmb/fish-and-chips.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Fried Shrimp",
+      "price": 10.0,
+      "stock": 9,
+      "category": "Seafood",
+      "image": "https://www.foodandwine.com/thmb/fried-shrimp.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Vegetable Soup",
+      "price": 4.0,
+      "stock": 20,
+      "category": "Healthy",
+      "image": "https://www.eatingwell.com/thmb/vegetable-soup.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Caesar Salad",
+      "price": 5.5,
+      "stock": 15,
+      "category": "Healthy",
+      "image": "https://www.simplyrecipes.com/thmb/caesar-salad.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Pancakes",
+      "price": 4.5,
+      "stock": 18,
+      "category": "Dessert",
+      "image": "https://www.foodandwine.com/thmb/pancakes.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Chocolate Cake",
+      "price": 5.0,
+      "stock": 10,
+      "category": "Dessert",
+      "image": "https://www.simplyrecipes.com/thmb/chocolate-cake.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Ice Cream",
+      "price": 3.0,
+      "stock": 25,
+      "category": "Dessert",
+      "image": "https://www.foodandwine.com/thmb/ice-cream.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Orange Juice",
+      "price": 2.5,
+      "stock": 35,
+      "category": "Drinks",
+      "image": "https://www.eatingwell.com/thmb/orange-juice.jpg"
+    }
+  ]
+}
