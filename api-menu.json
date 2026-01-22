@@ -1,0 +1,164 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pizza Margherita",
+      "price": 8.5,
+      "stock": 20,
+      "category": "Fast Food",
+      "image": "https://www.foodandwine.com/thmb/iJw7N_NfcPpd-EB8rpYbzrkSFIM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tomato-mozzarella-pizza-FT-RECIPE0725-e7244e979c504188a049623668c15b2e.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cheeseburger",
+      "price": 6.0,
+      "stock": 18,
+      "category": "Fast Food",
+      "image": "https://images.themodernproper.com/production/posts/2016/ClassicCheeseBurger_9.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1749310239&s=463b18fc3bb51dc5d96e866c848527c4"
+    },
+    {
+      "id": 3,
+      "name": "Chicken Tacos",
+      "price": 5.5,
+      "stock": 25,
+      "category": "Mexican",
+      "image": "https://littlesunnykitchen.com/wp-content/uploads/2021/10/Shredded-Chicken-Tacos-Recipe-1.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Beef Shawarma",
+      "price": 7.0,
+      "stock": 14,
+      "category": "Middle Eastern",
+      "image": "https://www.oliveandmango.com/images/uploads/2022_03_18_beef_shawarma_2.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Chicken Salad",
+      "price": 5.0,
+      "stock": 12,
+      "category": "Healthy",
+      "image": "https://www.allrecipes.com/thmb/aPy_MqN4GgyO27vh98ns1pXaIWg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8499-Best-Chicken-Salad-DDMFS-3X4-11915-d36a5b98b1e041b3b48b62ecdfa6029e.jpg"
+    },
+    {
+      "id": 6,
+      "name": "French Fries",
+      "price": 2.5,
+      "stock": 40,
+      "category": "Fast Food",
+      "image": "https://www.inspiredtaste.net/wp-content/uploads/2022/10/Baked-French-Fries-Recipe-1200.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Hot Dog",
+      "price": 4.0,
+      "stock": 22,
+      "category": "Fast Food",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTlEu1JaQ6XfzcgwccWfBsbDGadCJM9TSBDfFR_Y5u8QyI2qzZvrcbxt__bZtzL8N1d8zuSkxmPhgj4_0piXmOpntVWN1AehtMmciIWxc&s=10"
+    },
+    {
+      "id": 8,
+      "name": "Chicken Nuggets",
+      "price": 4.5,
+      "stock": 30,
+      "category": "Fast Food",
+      "image": "https://www.allrecipes.com/thmb/Dw_WFOvCds43ksPxkrE60qxcwSk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-8849-HomemadeChickenNuggets-beauty-4x3-ca915ee936054272af1b506181923c7f.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Spaghetti Bolognese",
+      "price": 9.0,
+      "stock": 10,
+      "category": "Italian",
+      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_spaghetti_bolognese_93639_16x9.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Lasagna",
+      "price": 9.5,
+      "stock": 8,
+      "category": "Italian",
+      "image": "https://amandascookin.com/wp-content/uploads/2025/08/Italian-Lasagna-RCSQ.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Grilled Chicken",
+      "price": 8.0,
+      "stock": 16,
+      "category": "Grill",
+      "image": "https://hips.hearstapps.com/hmg-prod/images/grilled-chicken-breast-lead-6626cdb0bb5ac.jpg?crop=1xw:1xh;center,top&resize=1400:*"
+    },
+    {
+      "id": 12,
+      "name": "Beef Steak",
+      "price": 12.0,
+      "stock": 6,
+      "category": "Grill",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQUR9N_xwtlS54I0JjiSmQdS9FjJA2JJTBRJJ8P3YDTvNeTygd3ZkQDJx0k7X9ntVyBhgqJvhaB3BYtkOBH4hUrkTEYxtp_OkK07L9xfU&s=10"
+    },
+    {
+      "id": 13,
+      "name": "Fish and Chips",
+      "price": 7.5,
+      "stock": 14,
+      "category": "Seafood",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE88sADtL1kkJwso2zrhFSxFPI3Q12C2P1gA37npLQLkgyT4U-L4hPw1UfH-Fz6-AwNPlAm5uZes8ujK1X-nToIL-NGFcK6az3jniRJEY92A&s=10"
+    },
+    {
+      "id": 14,
+      "name": "Fried Shrimp",
+      "price": 10.0,
+      "stock": 9,
+      "category": "Seafood",
+      "image": "https://www.cookedbyjulie.com/wp-content/uploads/2020/04/fried-shrimp-three.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Vegetable Soup",
+      "price": 4.0,
+      "stock": 20,
+      "category": "Healthy",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu5eyN_JzGjFfuRGYNctu0l6PWfffgbtEqtoemCuws2Q4nfIw1IlWbhsbTLJ1NJlWopAYB887MhCYHXf0_lhRb9boMZC9H-xo9ivYrAlo&s=10"
+    },
+    {
+      "id": 16,
+      "name": "Caesar Salad",
+      "price": 5.5,
+      "stock": 15,
+      "category": "Healthy",
+      "image": "https://media.chefdehome.com/750/0/0/caesar/classic-caesar-salad.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Pancakes",
+      "price": 4.5,
+      "stock": 18,
+      "category": "Dessert",
+      "image": "https://www.inspiredtaste.net/wp-content/uploads/2025/07/Pancake-Recipe-1.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Chocolate Cake",
+      "price": 5.0,
+      "stock": 10,
+      "category": "Dessert",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtONTemApW1S2RoEgNnq_xpvfbQr7l5ZdC1H9wiDPtNVDDuBt95-fwPfl3lmrDk0mbhxRlPi92XAfewQDq79Os4BjKBG3y7D_adhXm9qY&s=10"
+    },
+    {
+      "id": 19,
+      "name": "Ice Cream",
+      "price": 3.0,
+      "stock": 25,
+      "category": "Dessert",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Orange Juice",
+      "price": 2.5,
+      "stock": 35,
+      "category": "Drinks",
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]
+}
