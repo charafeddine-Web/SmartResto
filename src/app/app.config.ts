@@ -2,11 +2,17 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
+import {OrdersReducer} from './features/order/store/orders.reducer';
+import {OrdersEffects} from './features/order/store/orders.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
-  ]
+    provideRouter(routes),
+    provideStore(OrdersReducer),
+    provideEffects(OrdersEffects)
+]
 };

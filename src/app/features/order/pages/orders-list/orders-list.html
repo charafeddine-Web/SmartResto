@@ -1,0 +1,18 @@
+<h2>Orders</h2>
+
+<button (click)="createOrder()">➕ New Order</button>
+
+<div *ngIf="loading$ | async">Loading...</div>
+
+<ul *ngIf="orders$ | async as orders">
+  <li *ngFor="let order of orders">
+    <strong>#{{ order.id }}</strong>
+    — {{ order.status }}
+    — {{ order.totalPrice }} $
+    <button (click)="openOrder(order.id)">View</button>
+  </li>
+</ul>
+
+<p *ngIf="(orders$ | async)?.length === 0">
+  No orders found.
+</p>
