@@ -1,0 +1,107 @@
+<div class="review-container">
+  <h2>Customer Reviews</h2>
+  
+  <div class="add-review-btn">
+    <a routerLink="/review/add" class="btn btn-primary">Add Review</a>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card" *ngFor="let review of reviews">
+      <div class="review-header">
+        <h3>{{ review.username }}</h3>
+        <div class="rating">
+          <span *ngFor="let star of getStars(review.rating)" 
+                [class.star-filled]="star === '★'"
+                [class.star-empty]="star === '☆'">
+            {{ star }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="review-content">
+        <p>{{ review.comment }}</p>
+      </div>
+      
+      <div class="review-footer">
+        <small>{{ review.date | date:'medium' }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.review-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.add-review-btn {
+  margin-bottom: 30px;
+  text-align: right;
+}
+
+.btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.review-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.rating {
+  font-size: 18px;
+}
+
+.star-filled {
+  color: #ffc107;
+}
+
+.star-empty {
+  color: #e0e0e0;
+}
+
+.review-content p {
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+  color: #666;
+}
+
+.review-footer small {
+  color: #999;
+}
+</style>
