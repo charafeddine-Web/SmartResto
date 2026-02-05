@@ -1,0 +1,102 @@
+<div class="review-container">
+  <h2>Avis et Évaluations</h2>
+
+  <!-- Statistiques des avis -->
+  <div class="review-stats">
+    <div class="stat-item">
+      <span class="stat-label">Note moyenne:</span>
+      <span class="stat-value">{{ ((averageRating$ | async) || 0)?.toFixed?.(1) || '0.0' }}/5</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Nombre d'avis:</span>
+      <span class="stat-value">{{ (reviewCount$ | async) || 0 }}</span>
+    </div>
+  </div>
+
+  <!-- Formulaire pour ajouter un avis -->
+  <div class="review-form-container">
+    <h3>Laissez votre avis</h3>
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()" class="review-form">
+      <div class="form-group">
+        <label for="username">Votre nom:</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder="Entrez votre nom"
+          class="form-input"
+        />
+        <span *ngIf="reviewForm.get('username')?.hasError('required')" class="error">
+          Le nom est requis
+        </span>
+        <span *ngIf="reviewForm.get('username')?.hasError('minlength')" class="error">
+          Le nom doit contenir au moins 2 caractères
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Note (1-5):</label>
+        <select id="rating" formControlName="rating" class="form-input">
+          <option value="">Sélectionnez une note</option>
+          <option value="1">⭐ 1 - Très mauvais</option>
+          <option value="2">⭐⭐ 2 - Mauvais</option>
+          <option value="3">⭐⭐⭐ 3 - Moyen</option>
+          <option value="4">⭐⭐⭐⭐ 4 - Bon</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
+        </select>
+        <span *ngIf="reviewForm.get('rating')?.hasError('required')" class="error">
+          La note est requise
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Votre avis:</label>
+        <textarea
+          id="comment"
+          formControlName="comment"
+          placeholder="Laissez votre avis détaillé ici..."
+          class="form-textarea"
+          rows="4"
+        ></textarea>
+        <span *ngIf="reviewForm.get('comment')?.hasError('required')" class="error">
+          L'avis est requis
+        </span>
+        <span *ngIf="reviewForm.get('comment')?.hasError('minlength')" class="error">
+          L'avis doit contenir au moins 10 caractères
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!reviewForm.valid"
+        class="submit-btn"
+      >
+        Soumettre votre avis
+      </button>
+    </form>
+  </div>
+
+  <!-- Liste des avis -->
+  <div class="reviews-list-container">
+    <h3>Avis des clients</h3>
+    <div *ngIf="(reviews$ | async) as reviews">
+      <div *ngIf="reviews?.length === 0" class="no-reviews">
+        Aucun avis pour le moment. Soyez le premier à laisser un avis!
+      </div>
+      <div *ngFor="let review of reviews || []; trackBy: trackByReviewId" class="review-item">
+        <div class="review-header">
+          <span class="reviewer-name">{{ review.username }}</span>
+          <span class="review-date">{{ review.date | date: 'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="review-rating">
+          <span *ngFor="let star of getRatingStars(5)" class="star" [class.filled]="star <= review.rating">
+            ⭐
+          </span>
+          <span class="rating-number">({{ review.rating }}/5)</span>
+        </div>
+        <p class="review-comment">{{ review.comment }}</p>
+        <button class="delete-btn" (click)="deleteReview(review.id)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

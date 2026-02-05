@@ -1,0 +1,119 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-title">
+        <h2>Avis & Évaluations</h2>
+        <p class="product-title">{{ product.name }}</p>
+      </div>
+      <button class="close-btn" (click)="onClose()">✕</button>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-box">
+        <div class="stat-number">{{ ((averageRating$ | async) || 0)?.toFixed?.(1) || '0.0' }}</div>
+        <div class="stat-label">Note moyenne</div>
+        <div class="stars-display">
+          <span *ngFor="let star of getRatingStars(5)" class="star-display" [class.filled]="star <= ((averageRating$ | async) || 0)">★</span>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">{{ (reviewCount$ | async) || 0 }}</div>
+        <div class="stat-label">Avis</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="modal-body">
+      <!-- Reviews List Section -->
+      <div class="reviews-section">
+        <h3 class="section-title">Avis des clients</h3>
+        <div class="reviews-container">
+          <div *ngIf="reviews$ | async as reviews">
+            <div *ngIf="reviews?.length === 0" class="no-reviews-message">
+              <p>📝 Aucun avis pour ce plat</p>
+              <p class="subtitle">Soyez le premier à partager votre avis!</p>
+            </div>
+            <div *ngFor="let review of reviews || []; trackBy: trackByReviewId" class="review-card">
+              <div class="review-top">
+                <div class="reviewer-info">
+                  <span class="reviewer-name">{{ review.username }}</span>
+                  <span class="review-date">{{ review.date | date: 'dd MMM yyyy' }}</span>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span *ngFor="let star of getRatingStars(5)" class="star" [class.filled]="star <= review.rating">★</span>
+                <span class="rating-text">({{ review.rating }}/5)</span>
+              </div>
+              <p class="review-text">{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h3 class="section-title">Laissez votre avis</h3>
+        <form [formGroup]="reviewForm" (ngSubmit)="submitReview()" class="review-form">
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="username">Votre nom *</label>
+              <input
+                type="text"
+                id="username"
+                formControlName="username"
+                placeholder="Entrez votre nom"
+                class="form-input"
+              />
+              <span *ngIf="reviewForm.get('username')?.hasError('required') && reviewForm.get('username')?.touched" class="error-text">
+                Le nom est requis
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="rating">Votre note *</label>
+              <select id="rating" formControlName="rating" class="form-input">
+                <option value="">Sélectionnez...</option>
+                <option value="1">⭐ 1 - Très mauvais</option>
+                <option value="2">⭐⭐ 2 - Mauvais</option>
+                <option value="3">⭐⭐⭐ 3 - Moyen</option>
+                <option value="4">⭐⭐⭐⭐ 4 - Bon</option>
+                <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
+              </select>
+              <span *ngIf="reviewForm.get('rating')?.hasError('required') && reviewForm.get('rating')?.touched" class="error-text">
+                La note est requise
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="comment">Votre avis *</label>
+              <textarea
+                id="comment"
+                formControlName="comment"
+                placeholder="Partagez votre avis... (minimum 10 caractères)"
+                class="form-textarea"
+                rows="5"
+              ></textarea>
+              <span *ngIf="reviewForm.get('comment')?.hasError('required') && reviewForm.get('comment')?.touched" class="error-text">
+                L'avis est requis
+              </span>
+              <span *ngIf="reviewForm.get('comment')?.hasError('minlength') && reviewForm.get('comment')?.touched" class="error-text">
+                L'avis doit contenir au moins 10 caractères
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="!reviewForm.valid" class="submit-btn">
+            <span *ngIf="!reviewForm.valid" class="btn-disabled">Remplissez tous les champs</span>
+            <span *ngIf="reviewForm.valid">✓ Soumettre mon avis</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

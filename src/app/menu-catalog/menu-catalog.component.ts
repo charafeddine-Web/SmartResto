@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product, CartItem, CatalogAppState } from '../shared/models/Product.model';
-import * as ProductActions from './product.actions';
-import * as ProductSelectors from './product.selectors';
+import { Review } from '../shared/models/Review.model';
+import * as ProductActions from '../store/product/product.actions';
+import * as ProductSelectors from '../store/product/product.selectors';
+import * as ReviewActions from '../store/review/review.actions';
+import * as ReviewSelectors from '../store/review/review.selectors';
 
 import { CommonModule, AsyncPipe, NgIf, NgForOf } from '@angular/common';
+import { ProductReviewModalComponent } from '../features/review/product-review-modal.component';
 
 @Component({
   selector: 'app-menu-catalog',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, NgIf, NgForOf],
+  imports: [CommonModule, AsyncPipe, NgIf, NgForOf, ProductReviewModalComponent],
   templateUrl: './menu-catalog.component.html',
   styleUrls: ['./menu-catalog.component.css']
 })
@@ -24,14 +28,23 @@ export class MenuCatalogComponent implements OnInit {
   
   showCart = false;
   searchTerm = '';
+  selectedProduct: Product | null = null;
+  cartList: CartItem[] = [];
 
-  constructor(private store: Store<{ productState: CatalogAppState }>) {
+  constructor(private store: Store<{ productState: CatalogAppState; reviews: Review[] }>) {
     this.products$ = this.store.select(ProductSelectors.selectFilteredProducts);
     this.cart$ = this.store.select(ProductSelectors.selectCart);
     this.categories$ = this.store.select(ProductSelectors.selectCategories);
     this.selectedCategory$ = this.store.select(ProductSelectors.selectSelectedCategory);
     this.cartTotal$ = this.store.select(ProductSelectors.selectCartTotal);
     this.cartItemCount$ = this.store.select(ProductSelectors.selectCartItemCount);
+    
+    this.cart$.subscribe(cart => {
+      this.cartList = cart;
+    });
+    
+    // Charger les reviews depuis localStorage au démarrage
+    this.loadReviewsFromStorage();
   }
 
   async ngOnInit(): Promise<void> {
@@ -60,6 +73,33 @@ export class MenuCatalogComponent implements OnInit {
     }
   }
 
+  private loadReviewsFromStorage(): void {
+    const savedAvis = localStorage.getItem('avis');
+    if (savedAvis) {
+      try {
+        const avisParProduit = JSON.parse(savedAvis);
+        console.log('🚀 Application: Chargement des avis au démarrage (structure par produit)', avisParProduit);
+        
+        // Convertir la structure { "1": { idproduit, avis: [...] } } en tableau plat
+        const allReviews: any[] = [];
+        Object.values(avisParProduit).forEach((productData: any) => {
+          if (productData.avis && Array.isArray(productData.avis)) {
+            allReviews.push(...productData.avis);
+          }
+        });
+        
+        console.log('📝 Total avis chargés:', allReviews.length);
+        this.store.dispatch(ReviewActions.loadReviewsSuccess({ reviews: allReviews }));
+      } catch (e) {
+        console.error('Erreur lors du chargement des avis', e);
+      }
+    } else {
+      console.log('🚀 Application: Aucun avis trouvé dans localStorage au démarrage');
+      // Initialiser avec un tableau vide
+      this.store.dispatch(ReviewActions.loadReviewsSuccess({ reviews: [] }));
+    }
+  }
+
   filterByCategory(category: string): void {
     this.store.dispatch(ProductActions.setCategory({ category }));
   }
@@ -71,10 +111,12 @@ export class MenuCatalogComponent implements OnInit {
 
   addToCart(product: Product): void {
     this.store.dispatch(ProductActions.addToCart({ product }));
+    this.store.dispatch(ProductActions.decreaseProductStock({ productId: product.id, quantity: 1 }));
   }
 
   removeFromCart(productId: number): void {
     this.store.dispatch(ProductActions.removeFromCart({ productId }));
+    this.store.dispatch(ProductActions.increaseProductStock({ productId, quantity: 1 }));
   }
 
   toggleCart(): void {
@@ -85,5 +127,18 @@ export class MenuCatalogComponent implements OnInit {
     alert(`Total à payer: $${total.toFixed(2)}`);
     this.store.dispatch(ProductActions.clearCart());
     this.showCart = false;
+  }
+
+  openReviewModal(product: Product): void {
+    this.selectedProduct = product;
+  }
+
+  closeReviewModal(): void {
+    this.selectedProduct = null;
+  }
+
+  // Obtenir le nombre d'avis pour un produit
+  getReviewCount(productId: number): Observable<number> {
+    return this.store.select(ReviewSelectors.selectReviewCountByProductId(productId));
   }
 }

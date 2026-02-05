@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MenuCatalogComponent } from './menu-catalog/menu-catalog.component';
 import { productReducer } from './menu-catalog/product.reducer';
+import { reviewReducer } from './features/review/review.reducer';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 
@@ -17,7 +18,7 @@ import { routes } from './app.routes';
     BrowserModule,
     RouterModule.forRoot(routes),
     MenuCatalogComponent,
-    StoreModule.forRoot({ productState: productReducer }),
+    StoreModule.forRoot({ productState: productReducer, reviews: reviewReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false

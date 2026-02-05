@@ -5,12 +5,36 @@
   padding: 24px;
   font-family: Arial, sans-serif;
 }
+
+/* Header et Logo */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
+
+.logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.header h1 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  min-width: 200px;
+}
+
 .cart-btn {
   background: #ff9800;
   color: #fff;
@@ -19,6 +43,7 @@
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .search-section {
   margin-bottom: 18px;
@@ -104,11 +129,18 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 .product-price {
   font-weight: bold;
   color: #ff9800;
   font-size: 16px;
+}
+.product-actions {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: flex-end;
 }
 .add-btn {
   background: #4caf50;
@@ -118,6 +150,41 @@
   padding: 6px 14px;
   cursor: pointer;
   font-size: 15px;
+  flex: 1;
+  min-width: 80px;
+}
+.review-btn {
+  background: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+}
+.review-btn:hover {
+  background: #0b7dda;
+}
+
+.review-count {
+  font-size: 12px;
+  background: #ff5722;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-left: 2px;
 }
 .add-btn[disabled] {
   background: #ccc;
@@ -228,4 +295,193 @@
   opacity: 1;
   pointer-events: auto;
 }
-/* File cleared as requested */
+
+/* ======================== RESPONSIVE DESIGN ======================== */
+
+/* Tablettes et petits écrans (768px et moins) */
+@media (max-width: 768px) {
+  .menu-container {
+    padding: 16px;
+  }
+
+  .header {
+    padding: 12px 0;
+    gap: 12px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .cart-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-image-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .product-name {
+    font-size: 14px;
+  }
+
+  .product-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .product-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .add-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: 60px;
+  }
+
+  .review-btn {
+    padding: 8px 10px;
+    font-size: 16px;
+    min-width: 35px;
+  }
+
+  .review-count {
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .cart-sidebar {
+    width: 280px;
+    right: -280px;
+  }
+
+  .category-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Mobiles (480px et moins) */
+@media (max-width: 480px) {
+  .menu-container {
+    padding: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    padding: 8px 0;
+    gap: 10px;
+  }
+
+  .logo {
+    height: 35px;
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .header h1 {
+    font-size: 16px !important;
+    min-width: 100px;
+  }
+
+  .cart-btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .product-card {
+    padding: 8px;
+  }
+
+  .product-image-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .product-name {
+    font-size: 12px;
+  }
+
+  .product-category {
+    font-size: 11px;
+  }
+
+  .product-price {
+    font-size: 14px;
+  }
+
+  .add-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .review-btn {
+    padding: 6px 8px;
+    font-size: 14px;
+    min-width: 32px;
+  }
+
+  .review-count {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+    margin-left: 1px;
+  }
+
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .category-filter {
+    gap: 4px;
+  }
+
+  .category-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .search-input {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .cart-header h2 {
+    font-size: 16px;
+  }
+
+  .cart-item-info p {
+    font-size: 12px;
+  }
+}
